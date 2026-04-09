@@ -9,6 +9,9 @@ import (
 // 	input := HexToDec(s)
 // 	input = BinToDec(input)
 // 	input = ToUp(input)
+// 	input = ToLow(input)
+// 	input = ToCap(input)
+// 	input = LastTwoUpper(input)
 // 	return input
 // }
 
@@ -18,7 +21,7 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	result := ToUp(string(data))
+	result := LastTwoUpper(string(data))
 
 	err = os.WriteFile("output.txt", []byte(result), 0644)
 	if err != nil {
