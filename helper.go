@@ -26,7 +26,7 @@ func BinToDec(str string) string {
 	s := strings.Fields(str)
 	for i := 0; i < len(s); i++ {
 		if s[i] == "(bin)" {
-			ja, err := strconv.ParseInt(s[i-1], 16, 64)
+			ja, err := strconv.ParseInt(s[i-1], 2, 64)
 			if err != nil {
 				log.Fatal(err)
 
@@ -76,10 +76,10 @@ func ToCap(str string) string {
 
 		}
 	}
-	return strings.Join(s, " ") //hdsd sdjd fd "(up,2)" ddsds
+	return strings.Join(s, " ")
 }
 
-func LastTwoUpper(str string) string {
+func LastN(str string) string {
 	s := strings.Fields(str)
 	for i := 0; i < len(s); i++ {
 		if s[i] == "(low," && i+1 < len(s) {

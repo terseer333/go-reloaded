@@ -11,7 +11,7 @@ func ProcessText(s string) string {
 	input = ToUp(input)
 	input = ToLow(input)
 	input = ToCap(input)
-	input = LastTwoUpper(input)
+	input = LastN(input)
 	return input
 }
 
