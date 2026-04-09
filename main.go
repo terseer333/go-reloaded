@@ -5,15 +5,15 @@ import (
 	"os"
 )
 
-// func ProcessText(s string) string {
-// 	input := HexToDec(s)
-// 	input = BinToDec(input)
-// 	input = ToUp(input)
-// 	input = ToLow(input)
-// 	input = ToCap(input)
-// 	input = LastTwoUpper(input)
-// 	return input
-// }
+func ProcessText(s string) string {
+	input := HexToDec(s)
+	input = BinToDec(input)
+	input = ToUp(input)
+	input = ToLow(input)
+	input = ToCap(input)
+	input = LastTwoUpper(input)
+	return input
+}
 
 func main() {
 
@@ -21,7 +21,7 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	result := LastTwoUpper(string(data))
+	result := ProcessText(string(data))
 
 	err = os.WriteFile("output.txt", []byte(result), 0644)
 	if err != nil {

@@ -76,35 +76,43 @@ func ToCap(str string) string {
 
 		}
 	}
-	return strings.Join(s, " ")    //hdsd sdjd fd "(up,2)" ddsds
+	return strings.Join(s, " ") //hdsd sdjd fd "(up,2)" ddsds
 }
 
 func LastTwoUpper(str string) string {
 	s := strings.Fields(str)
 	for i := 0; i < len(s); i++ {
-		if strings.HasPrefix(s[i], "(up,") {
-			var numba string
-			if strings.HasSuffix(s[i], ")") {
-				numba = strings.TrimPrefix(strings.TrimSuffix(s[i], ")"), "(up,")
-				s = append(s[:i], s[i+1:]...)
-				i--
+		if s[i] == "(low," && i+1 < len(s) {
+			num := strings.TrimSuffix(s[i+1], ")")
+			s = append(s[:i], s[i+2:]...)
+			i--
+			count, _ := strconv.Atoi(num)
 
-				count,err := strconv.Atoi(numba)
-				if err != nil {
-					log.Fatal(err)
-				}
-
-				start := i - count + 1
-				if start < 0 {
-					start = 0 
-				}
-
-				for j := start; j <=i; j++ {
-					s[j] = strings.ToUpper(s[j])
-				}
+			start := i - count + 1
+			if start < 0 {
+				start = 0
 			}
+			for j := start; j <= i; j++ {
+				s[j] = strings.ToLower(s[j])
 
+			}
 		}
+		if s[i] == "(cap," && i+1 < len(s) {
+			num := strings.TrimSuffix(s[i+1], ")")
+			s = append(s[:i], s[i+2:]...)
+			i--
+			count, _ := strconv.Atoi(num)
+
+			start := i - count + 1
+			if start < 0 {
+				start = 0
+			}
+			for j := start; j <= i; j++ {
+				s[j] = strings.Title(s[j])
+
+			}
+		}
+
 	}
 	return strings.Join(s, " ")
 }
