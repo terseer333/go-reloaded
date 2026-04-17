@@ -7,6 +7,7 @@ func Complier(text string) string {
 	text = Quote(text)
 	text = Article(text)
 	text = Base(text)
+	text = BaseN(text)
 
 	return text
 
