@@ -1,18 +1,11 @@
 package helper
 
-import "strings"
+import "regexp"
 
 func Quote(text string) string {
-
-	words := strings.Split(text, "'")
-	for i := range words {
-
-		if i%2 == 1 {
-			words[i] = strings.TrimSpace(words[i])
-
-		}
-	}
-
-	return strings.Join(words, "'")
-
+reg := regexp.MustCompile(`'[ ]*([^'].*?)[ ]*'`)
+reg2 := regexp.MustCompile(`"[ ]*([^"].*?)[ ]*"`)
+	t:=reg.REplaceAllString(text,`'$1'`)
+	t=reg2.REplaceAllString(t,`"$2"`)
+	return t
 }
